@@ -26,7 +26,7 @@ const cartStore = useCartStore();
         <img src="/heart.svg" alt="cart"/>
         <span>Закладки</span>
       </RouterLink>
-      <RouterLink to="/orders" class="flex items-center cursor-pointer gap-3 text-slate-400 hover:text-black transition">
+      <RouterLink to="/profile" class="flex items-center cursor-pointer gap-3 text-slate-400 hover:text-black transition">
         <img src="/profile.svg" alt="profile"/>
         <span>Профиль</span>
       </RouterLink>

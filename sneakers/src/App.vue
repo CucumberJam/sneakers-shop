@@ -6,11 +6,15 @@ import CartModalComponent from "@/components/cart/CartModalComponent.vue";
 import {onMounted, ref} from "vue";
 import {RouterView} from "vue-router";
 import {useSneakersStore} from "@/stores/sneakers.js";
+import {useAuthStore} from "@/stores/auth.js";
 
 const showCartModal = ref(false);
 const sneakersStore= useSneakersStore();
+const authStore = useAuthStore();
+
 onMounted(() => {
   sneakersStore.init();
+  authStore.init();
 });
 const toggleShowCartModal = () => {
   showCartModal.value = !showCartModal.value;

@@ -3,6 +3,7 @@ import {useCartStore} from "@/stores/cart.js";
 import CardHeadComponent from "@/components/card/CardHeadComponent.vue";
 import {useSneakersStore} from "@/stores/sneakers.js";
 import CardListComponent from "@/components/card/CardListComponent.vue";
+import Paginator from 'primevue/paginator';
 
 const cartStore = useCartStore();
 const sneakersStore= useSneakersStore();
@@ -21,7 +22,6 @@ const sneakersStore= useSneakersStore();
                        :cards="sneakersStore.filteredPaginated"
                        :toggle-favorite="sneakersStore.toggleFavorite"
                        @add="cartStore.addItemToCart"/>
-
   </div>
 </template>
 

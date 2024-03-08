@@ -15,9 +15,31 @@ const router = createRouter({
             component: () => import('@/views/FavoritesView.vue')
         },
         {
-            path: '/orders',
-            name: 'orders',
-            component: () => import('@/views/OrdersView.vue')
+            path: '/profile',
+            name: 'profile',
+            component: () => import('@/views/ProfileView.vue'),
+            children: [
+                {
+                    path: '/signup',
+                    name: 'signup',
+                    component: ()=> import('@/views/SignUpView.vue')
+                },
+                {
+                    path: '/login',
+                    name: 'login',
+                    component: ()=> import('@/views/LoginView.vue')
+                },
+                {
+                    path: '/resetpass',
+                    name: 'resetpass',
+                    component: () => import("@/views/ForgotPasswordView.vue")
+                },
+                {
+                    path: '/orders',
+                    name: 'orders',
+                    component: ()=> import('@/views/OrdersView.vue')
+                },
+            ]
         },
     ]
 

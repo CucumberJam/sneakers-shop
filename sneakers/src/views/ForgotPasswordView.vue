@@ -1,69 +1,43 @@
 <script setup>
+import Message from "primevue/message";
 import InputText from "primevue/inputtext";
-import LoaderComponent from "@/components/UI/LoaderComponent.vue";
-import MessagesComponent from "@/components/UI/MessagesComponent.vue";
 import Button from "primevue/button";
-import {ref} from 'vue';
+import LoaderComponent from "@/components/UI/LoaderComponent.vue";
 import {useAuthStore} from "@/stores/auth.js";
+import {ref} from "vue";
+import MessagesComponent from "@/components/UI/MessagesComponent.vue";
 
 const authStore = useAuthStore();
 const email = ref();
-const password = ref();
 
-const login = async () => {
-  if(!email.value || !password.value){
-    alert('Please fill all fields.');
-    return;
-  }
-  await authStore.authenticateUser('login', email.value, password.value);
-  email.value = '';
-  password.value = '';
-}
 </script>
 
 <template>
   <main class="form-block">
     <MessagesComponent :error-message="authStore.config.error"
                        :success="authStore.config.success"/>
-
     <form class="form">
-      <h2 class="form_header">Login</h2>
-
+      <h2 class="form_header">Reset password:</h2>
       <div class="form__item">
-      <span>
-        <i class="pi pi-envelope"></i>
-      </span>
+        <span>
+          <i class="pi pi-user"></i>
+        </span>
         <InputText class="input" type="email" v-model="email" placeholder="Your E-mail"/>
       </div>
-
-      <div class="form__item">
-      <span>
-        <i class="pi pi-lock"></i>
-      </span>
-        <InputText class="input" v-model="password" :feedback="false" type="password" placeholder="Your Password"/>
-      </div>
-
       <LoaderComponent v-if="authStore.config.loader"/>
-
       <div v-else class="form__item">
-      <span>Are you not registered yet?
-        <router-link to="/signup">Sign Up</router-link>
-      </span>
-        <Button class="btn" label="Login" @click="login"/>
+        <Button class="btn" label="Set" @click="authStore.forgotPassword(email)"/>
       </div>
-
-      <div class="form__item">
-        <span>Forgot password?<br/>
-          <router-link to="/resetpass">click to recover</router-link>
-        </span>
-      </div>
-
+      <div></div>
     </form>
-  </main>
+    </main>
 </template>
 
 <style scoped>
+
 .btn{
+  max-width: 200px;
+  width: 100%;
   border-radius: 5px;
   border: 1px solid #3faa7f;
   padding: 5px;
